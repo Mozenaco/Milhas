@@ -10,6 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/blueGreen"
         android:src="@mipmap/banner" />
 
     <RelativeLayout
@@ -18,14 +19,16 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/etIATAOrigin"
             android:layout_width="337sp"
             android:layout_height="54sp"
-            android:layout_alignBottom="@+id/editText"
-            android:layout_alignStart="@+id/editText"
+            android:layout_alignEnd="@+id/etIATADestination"
             android:layout_marginBottom="75dp"
+            android:layout_marginLeft="19sp"
             android:layout_marginTop="158sp"
             android:background="@android:color/white"
             android:drawableRight="@mipmap/pin"
+            android:elevation="2dp"
             android:hint="IATA Origem"
             android:paddingBottom="18sp"
             android:paddingEnd="10sp"
@@ -35,7 +38,7 @@
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/etIATADestination"
             android:layout_width="337sp"
             android:layout_height="54sp"
             android:layout_marginLeft="19sp"
@@ -43,6 +46,7 @@
             android:layout_marginTop="233sp"
             android:background="@android:color/white"
             android:drawableRight="@mipmap/pin"
+            android:elevation="2dp"
             android:hint="IATA Destino"
             android:paddingBottom="18sp"
             android:paddingEnd="10sp"
@@ -58,6 +62,7 @@
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/dateofdeparture"
                 android:layout_width="162sp"
                 android:layout_height="54sp"
                 android:layout_marginBottom="380sp"
@@ -65,6 +70,7 @@
                 android:layout_marginRight="194.6sp"
                 android:background="@android:color/white"
                 android:drawableRight="@mipmap/calendario"
+                android:elevation="2dp"
                 android:hint="Data de Ida"
                 android:paddingEnd="10sp"
                 android:paddingLeft="15sp"
@@ -72,6 +78,7 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/dateofarrival"
                 android:layout_width="162sp"
                 android:layout_height="54sp"
                 android:layout_marginBottom="380sp"
@@ -79,6 +86,7 @@
                 android:layout_marginRight="18.6sp"
                 android:background="@android:color/white"
                 android:drawableRight="@mipmap/calendario"
+                android:elevation="2dp"
                 android:hint="Data de Volta"
                 android:paddingEnd="10sp"
                 android:paddingLeft="15sp"
@@ -88,6 +96,7 @@
         </RelativeLayout>
 
         <EditText
+            android:id="@+id/etNumberOfPassengers"
             android:layout_width="337sp"
             android:layout_height="54sp"
             android:layout_marginBottom="380sp"
@@ -96,16 +105,20 @@
             android:layout_marginTop="381sp"
             android:background="@android:color/white"
             android:drawableRight="@mipmap/passageiros"
+            android:elevation="2dp"
             android:hint="Quantidade de Passageiros"
             android:paddingBottom="18sp"
             android:paddingEnd="10sp"
             android:paddingLeft="15sp"
+            android:maxLength="3"
+            android:inputType="number"
             android:paddingTop="18sp"
             android:textColorHint="@color/coolGrey"
             android:textSize="14sp" />
 
 
         <Button
+            android:id="@+id/btSearch"
             android:layout_width="337sp"
             android:layout_height="54sp"
             android:layout_marginBottom="380sp"
@@ -114,9 +127,10 @@
             android:layout_marginTop="455sp"
             android:background="@color/topaz"
             android:drawableLeft="@mipmap/btnunselectedbranco"
-            android:paddingEnd="60sp"
+            android:paddingEnd="70sp"
             android:paddingStart="85sp"
             android:text="Pesquisar passagem"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
