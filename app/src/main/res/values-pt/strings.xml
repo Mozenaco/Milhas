@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Milhas</string>
     <string name="iata_origin">IATA Origem</string>
     <string name="iata_destination">IATA Destino</string>
     <string name="date_of_departure">Data de Ida</string>

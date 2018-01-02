@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="337sp"
+    android:layout_height="253sp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="219sp"
+            android:layout_marginLeft="27sp"
+            android:layout_marginTop="15sp"
+            android:fontFamily="@font/montserratbold"
+            android:text="IDA"
+            android:textColor="@color/coolGrey"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:src="@mipmap/shape"
+            android:layout_width="11sp"
+            android:layout_height="5sp"
+            android:layout_marginBottom="223sp"
+            android:layout_marginLeft="121sp"
+            android:layout_marginTop="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="167sp"
+            android:layout_marginLeft="159sp"
+            android:layout_marginTop="18sp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Quarta, 08 de dezembro"
+            android:textColor="@color/coolGrey"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginLeft="7.5sp"
+            android:layout_marginTop="94.5sp"
+            android:layout_marginBottom="156.5sp"
+            android:src="@drawable/dotted"
+            android:layerType="software" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="219sp"
+            android:layout_marginLeft="27sp"
+            android:layout_marginTop="108sp"
+            android:fontFamily="@font/montserratbold"
+            android:text="VOLTA"
+            android:textColor="@color/coolGrey"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:src="@mipmap/shape"
+            android:layout_width="11sp"
+            android:layout_height="5sp"
+            android:layout_marginBottom="223sp"
+            android:layout_marginLeft="121sp"
+            android:rotation="180"
+            android:layout_marginTop="117sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="167sp"
+            android:layout_marginLeft="159sp"
+            android:layout_marginTop="111sp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Quarta, 08 de dezembro"
+            android:textColor="@color/coolGrey"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="319sp"
+            android:layout_marginTop="146sp"
+            android:layout_marginLeft="7sp"
+            android:layout_marginRight="11sp"
+            android:layout_height="44sp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratbold"
+            android:text="GOL"
+            android:layout_marginLeft="21sp"
+            android:textColor="@color/coolGrey"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratregular"
+            android:text="G3-9018"
+            android:layout_marginLeft="12sp"
+            android:layout_marginTop="18sp"
+            android:textColor="@color/coolGrey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratbold"
+            android:text="06:55"
+            android:layout_marginLeft="96sp"
+            android:layout_marginBottom="23.5sp"
+            android:textColor="@color/coolGrey"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="103sp"
+            android:layout_marginTop="18sp"
+            android:fontFamily="@font/montserratregular"
+            android:text="CNF"
+            android:textColor="@color/coolGrey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratmedium"
+            android:text="1H55"
+            android:layout_marginLeft="183sp"
+            android:layout_marginBottom="23.5sp"
+            android:textColor="@color/coolGrey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="161.5sp"
+            android:layout_marginTop="18sp"
+            android:fontFamily="@font/montserratregular"
+            android:text="VOO DIRETO"
+            android:textColor="@color/coolGrey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratbold"
+            android:text="07:51"
+            android:layout_marginLeft="268sp"
+            android:layout_marginBottom="23.5sp"
+            android:textColor="@color/coolGrey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="273sp"
+            android:layout_marginTop="18sp"
+            android:fontFamily="@font/montserratregular"
+            android:text="GIG"
+            android:textColor="@color/coolGrey"
+            android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginLeft="7.5sp"
+            android:layout_marginTop="187sp"
+            android:layout_marginRight="11.9sp"
+            android:layout_marginBottom="63.5sp"
+            android:src="@drawable/dotted"
+            android:layerType="software" />
+
+        <Button
+            android:id="@+id/btSearch"
+            android:layout_width="312sp"
+            android:layout_height="35sp"
+            android:layout_marginBottom="17sp"
+            android:layout_marginLeft="13sp"
+            android:layout_marginRight="12sp"
+            android:layout_marginTop="201sp"
+            android:background="@color/topaz"
+            android:text="Comprar R$ 355,39"
+            android:textAllCaps="false"
+            android:fontFamily="@font/montserratbold"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="319sp"
+            android:layout_marginTop="53sp"
+            android:layout_marginLeft="7sp"
+            android:layout_marginRight="11sp"
+            android:layout_height="44sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratbold"
+                android:text="GOL"
+                android:layout_marginLeft="21sp"
+                android:textColor="@color/coolGrey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:text="G3-9018"
+                android:layout_marginLeft="12sp"
+                android:layout_marginTop="18sp"
+                android:textColor="@color/coolGrey"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratbold"
+                android:text="06:55"
+                android:layout_marginLeft="96sp"
+                android:layout_marginBottom="23.5sp"
+                android:textColor="@color/coolGrey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="103sp"
+                android:layout_marginTop="18sp"
+                android:fontFamily="@font/montserratregular"
+                android:text="CNF"
+                android:textColor="@color/coolGrey"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratmedium"
+                android:text="1H55"
+                android:layout_marginLeft="183sp"
+                android:layout_marginBottom="23.5sp"
+                android:textColor="@color/coolGrey"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="161.5sp"
+                android:layout_marginTop="18sp"
+                android:fontFamily="@font/montserratregular"
+                android:text="VOO DIRETO"
+                android:textColor="@color/coolGrey"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratbold"
+                android:text="07:51"
+                android:layout_marginLeft="268sp"
+                android:layout_marginBottom="23.5sp"
+                android:textColor="@color/coolGrey"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="273sp"
+                android:layout_marginTop="18sp"
+                android:fontFamily="@font/montserratregular"
+                android:text="GIG"
+                android:textColor="@color/coolGrey"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

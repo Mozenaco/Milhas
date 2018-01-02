@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mateus.andrade.milhas.Activities.MainActivity">
+
+    <LinearLayout
+        android:background="@color/paleGrey"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48sp"
+        android:background="@color/blueGreen">
+
+        <ImageView
+            android:layout_width="36sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18.8sp"
+            android:layout_marginTop="15sp"
+            android:src="@mipmap/arrowbackbranco" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110sp"
+            android:layout_marginTop="11sp"
+            android:fontFamily="@font/montserratbold"
+            android:text="@string/search_travel"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="39sp"
+        android:background="@color/coolGrey">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16sp"
+            android:layout_marginTop="12sp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="@string/air_company"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="115sp"
+            android:layout_marginTop="12sp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="@string/departure"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="204sp"
+            android:layout_marginTop="12sp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="@string/duration"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="296sp"
+            android:layout_marginTop="12sp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="@string/arrival"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+
+    <!--<ListView-->
+    <!--android:id="@+id/list"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:background="@color/paleGrey"-->
+    <!--android:paddingLeft="21sp"-->
+    <!--android:paddingRight="17sp"-->
+    <!--android:paddingTop="20sp"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--</ListView>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/paleGrey"
+        android:paddingLeft="21sp"
+        android:paddingRight="17sp"
+        android:paddingTop="20sp">
+
+        <include layout="@layout/row_view"/>
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
