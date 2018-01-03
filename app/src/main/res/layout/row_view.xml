@@ -15,7 +15,8 @@
         <TextView
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="27sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginLeft="50sp"
             android:layout_marginTop="15sp"
             android:layout_weight="0.30"
             android:fontFamily="@font/montserratbold"
@@ -53,10 +54,10 @@
 
     <LinearLayout
         android:layout_width="319sp"
-        android:layout_marginTop="3sp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="7sp"
         android:layout_marginRight="11sp"
+        android:layout_marginTop="3sp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -114,8 +115,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="2sp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2sp"
             android:orientation="horizontal">
 
             <TextView
@@ -182,7 +183,8 @@
         <TextView
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="27sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginLeft="40sp"
             android:layout_marginTop="15sp"
             android:layout_weight="0.30"
             android:fontFamily="@font/montserratbold"

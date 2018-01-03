@@ -1,28 +1,47 @@
 package mateus.andrade.milhas.Activities;
 
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Lists;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,10 +52,15 @@ import mateus.andrade.milhas.R;
  * Created by mateusandrade on 01/01/2018.
  */
 
-public class Result extends AppCompatActivity {
+public class Result extends AppCompatActivity implements View.OnClickListener {
 
     List<Flight> flights;
+    List<String> airlines;
+    List<String> airlinesToFilter;
     @BindView(R.id.backButton) ImageView backButton;
+    @BindView(R.id.filter) LinearLayout filter;
+    @BindView(R.id.order) LinearLayout order;
+    Boolean[] selectedItems;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,22 +81,98 @@ public class Result extends AppCompatActivity {
             flights = (List<Flight>)extras.getSerializable("fly");
         }
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(this);
+        filter.setOnClickListener(this);
+        order.setOnClickListener(this);
 
         View recyclerView = findViewById(R.id.flight_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
+        getAllAirlines();
+    }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.backButton:
+                finish();
+            break;
+
+            case R.id.filter:
+
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        airlines );
+
+                final AlertDialog filterdialog = new AlertDialog.Builder(this)
+                        .setTitle("Filtrar por companhia")
+                        .setAdapter(arrayAdapter, null)
+                        .setNegativeButton(getResources().getString(android.R.string.cancel), null)
+                        .create();
+
+                filterdialog.getListView().setItemsCanFocus(false);
+                filterdialog.getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+                filterdialog.getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+
+                        filterByAirline(airlines.get(position));
+                        filterdialog.dismiss();
+                    }
+                });
+
+                filterdialog.show();
+
+                break;
+
+            case R.id.order:
+
+                List<String> order_array_list = new ArrayList<String>();
+                order_array_list.add(" ↓ Menor Preço ");
+                order_array_list.add(" ↑ Maior Preço ");
+
+                ArrayAdapter<String> orderarrayAdapter = new ArrayAdapter<String>(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        order_array_list );
+
+                final AlertDialog orderdialog = new AlertDialog.Builder(this)
+                        .setTitle("Ordenar por Preço")
+                        .setAdapter(orderarrayAdapter, null)
+                        .setNegativeButton(getResources().getString(android.R.string.cancel), null)
+                        .create();
+
+                orderdialog.getListView().setItemsCanFocus(false);
+                orderdialog.getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                orderdialog.getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        if(position==0) {
+                            orderByPriceAscedent();
+                        }else{
+                            orderByPriceDescedent();
+                        }
+                        orderdialog.dismiss();
+                    }
+                });
+
+                orderdialog.show();
+                break;
+
+        }
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
 
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, flights, true));
+    }
+
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<Flight> f) {
+
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, f, true));
     }
 
 
@@ -203,5 +303,63 @@ public class Result extends AppCompatActivity {
         }
     }
 
+    public void getAllAirlines(){
+
+        Set<String> companies = new HashSet<String>();
+        for (int i = 0; i< flights.size(); i++){
+            companies.add(flights.get(i).getAirline());
+        }
+        airlines = new ArrayList<String>();
+        airlines.addAll(companies);
+        airlinesToFilter = airlines;
+    }
+
+    public void orderByPriceAscedent(){
+
+        Collections.sort(flights, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                Flight p1 = (Flight) o1;
+                Flight p2 = (Flight) o2;
+                return Integer.valueOf(p1.getFare().getTotalfare()).compareTo(Integer.valueOf(p2.getFare().getTotalfare()));
+            }
+        });
+        View recyclerView = findViewById(R.id.flight_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
+    }
+
+    public void orderByPriceDescedent(){
+
+        Collections.sort(flights, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                Flight p1 = (Flight) o1;
+                Flight p2 = (Flight) o2;
+                return Integer.valueOf(p2.getFare().getTotalfare()).compareTo(Integer.valueOf(p1.getFare().getTotalfare()));
+            }
+        });
+        View recyclerView = findViewById(R.id.flight_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
+    }
+
+    public void filterByAirline(String airlineName){
+
+        airlinesToFilter = new ArrayList<String>();
+        airlinesToFilter.add(airlineName);
+
+        List<Flight> filtered = Lists.newArrayList();
+        for(Flight p : flights) {
+            if(airlinesToFilter.contains(p.getAirline())) {
+                filtered.add(p);
+            }
+        }
+
+        View recyclerView = findViewById(R.id.flight_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView, filtered);
+
+    }
 
 }
