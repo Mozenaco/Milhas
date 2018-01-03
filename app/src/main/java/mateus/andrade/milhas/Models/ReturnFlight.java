@@ -3,11 +3,10 @@ package mateus.andrade.milhas.Models;
 import java.io.Serializable;
 
 /**
- * Created by mateusandrade on 02/01/2018.
+ * Created by mateusandrade on 03/01/2018.
  */
 
-public class Flight implements Serializable{
-
+public class ReturnFlight implements Serializable{
     String origin;
     String flightno;
     String deptime;
@@ -17,8 +16,7 @@ public class Flight implements Serializable{
     String depdate;
     String arrtime;
     String carrierid;
-    Fare fare;
-    ReturnFlight[] returnfl;
+
 
     public String getOrigin() {
         return origin;
@@ -84,22 +82,6 @@ public class Flight implements Serializable{
         this.arrtime = arrtime;
     }
 
-    public Fare getFare() {
-        return fare;
-    }
-
-    public ReturnFlight[] getReturnfl() {
-        return returnfl;
-    }
-
-    public void setReturnfl(ReturnFlight[] returnfl) {
-        this.returnfl = returnfl;
-    }
-
-    public void setFare(Fare fare) {
-        this.fare = fare;
-    }
-
     public String getCarrierid() {
         return carrierid;
     }
@@ -108,4 +90,3 @@ public class Flight implements Serializable{
         this.carrierid = carrierid;
     }
 }
-

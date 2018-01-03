@@ -7,108 +7,200 @@
     tools:context="mateus.andrade.milhas.Activities.MainActivity">
 
     <LinearLayout
-        android:background="@color/paleGrey"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/paleGrey"
         android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48sp"
-        android:background="@color/blueGreen">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:background="@color/blueGreen">
 
-        <ImageView
-            android:layout_width="36sp"
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="36sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18.8sp"
+                android:layout_marginTop="15sp"
+                android:src="@mipmap/arrowbackbranco" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="110sp"
+                android:layout_marginTop="11sp"
+                android:fontFamily="@font/montserratbold"
+                android:text="@string/search_travel"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="39sp"
+            android:background="@color/coolGrey">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16sp"
+                android:layout_marginTop="12sp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="@string/air_company"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="115sp"
+                android:layout_marginTop="12sp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="@string/departure"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="204sp"
+                android:layout_marginTop="12sp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="@string/duration"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="296sp"
+                android:layout_marginTop="12sp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="@string/arrival"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <android.support.v7.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/flight_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/paleGrey"
+                android:paddingTop="20sp"
+                app:layoutManager="LinearLayoutManager"
+                tools:context=".Activities.Result"
+                tools:listitem="@layout/row_view" />
+
+        </RelativeLayout>
+
+
+        <!--<ListView-->
+        <!--android:id="@+id/list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:background="@color/paleGrey"-->
+        <!--android:paddingLeft="21sp"-->
+        <!--android:paddingRight="17sp"-->
+        <!--android:paddingTop="20sp"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--</ListView>-->
+
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/paleGrey"-->
+        <!--android:paddingLeft="21sp"-->
+        <!--android:paddingRight="17sp"-->
+        <!--android:paddingTop="20sp">-->
+
+        <!--<include layout="@layout/row_view" />-->
+
+
+        <!--</LinearLayout>-->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18.8sp"
-            android:layout_marginTop="15sp"
-            android:src="@mipmap/arrowbackbranco" />
+            android:layout_marginTop="-40sp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110sp"
-            android:layout_marginTop="11sp"
-            android:fontFamily="@font/montserratbold"
-            android:text="@string/search_travel"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40sp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/silver"
+                android:gravity="bottom">
 
-    </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="39sp"
-        android:background="@color/coolGrey">
+                    <LinearLayout
+                        android:id="@+id/filter"
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.497"
+                        android:clickable="true"
+                        android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16sp"
-            android:layout_marginTop="12sp"
-            android:fontFamily="@font/montserratmedium"
-            android:text="@string/air_company"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/filtro"
+                            android:fontFamily="@font/montserratbold"
+                            android:gravity="center"
+                            android:paddingEnd="70sp"
+                            android:paddingLeft="50sp"
+                            android:text="Filtrar"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="115sp"
-            android:layout_marginTop="12sp"
-            android:fontFamily="@font/montserratmedium"
-            android:text="@string/departure"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+                    <LinearLayout
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.006"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="vertical"></LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="204sp"
-            android:layout_marginTop="12sp"
-            android:fontFamily="@font/montserratmedium"
-            android:text="@string/duration"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+                    <LinearLayout
+                        android:id="@+id/order"
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.497"
+                        android:clickable="true"
+                        android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="296sp"
-            android:layout_marginTop="12sp"
-            android:fontFamily="@font/montserratmedium"
-            android:text="@string/arrival"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
-
-
-    </RelativeLayout>
-
-    <!--<ListView-->
-    <!--android:id="@+id/list"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:background="@color/paleGrey"-->
-    <!--android:paddingLeft="21sp"-->
-    <!--android:paddingRight="17sp"-->
-    <!--android:paddingTop="20sp"-->
-    <!--android:layout_height="match_parent">-->
-
-    <!--</ListView>-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/ordenar"
+                            android:fontFamily="@font/montserratbold"
+                            android:gravity="center"
+                            android:paddingEnd="60sp"
+                            android:paddingLeft="50sp"
+                            android:text="Ordenar"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/paleGrey"
-        android:paddingLeft="21sp"
-        android:paddingRight="17sp"
-        android:paddingTop="20sp">
-
-        <include layout="@layout/row_view"/>
-
-
-    </LinearLayout>
-
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

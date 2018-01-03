@@ -2,13 +2,19 @@ package mateus.andrade.milhas.Activities;
 
 import android.animation.ObjectAnimator;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
@@ -16,6 +22,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -27,9 +34,11 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -52,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private JsonDownloader jsonDownloader = null;
     String requestURL;
     Flight[] flightsArray;
+    public List<Flight> flights;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,12 +156,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 "&source=CNF" + //etIATAOrigin.getText() +
                 "&destination=GIG" + //etIATADestination.getText() +
                 "&dateofdeparture=20180110" +
-                //"&dateofarrival=20180112" +
+                "&dateofarrival=20180112" +
                 "&seatingclass=E" +
                 "&adults=1" + //etNumberOfPassengers.getText() +
                 "&children=0" +
                 "&infants=0" +
                 "&counter=100";
+        Log.i("MainActivity","Request created: " + requestURL);
 
     }
 
@@ -199,7 +210,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //dismiss or cancel the dialog
             progressDialog.cancel();
             Intent myIntent = new Intent(MainActivity.this, Result.class);
+            myIntent.putExtra("fly", (Serializable) Arrays.asList(flightsArray));
             MainActivity.this.startActivity(myIntent);
+
         }
     }
+
 }
