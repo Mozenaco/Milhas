@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.btSearch) Button btSearch;
     Calendar myCalendar = Calendar.getInstance();
     private JsonDownloader jsonDownloader = null;
-    String requestURL;
     Flight[] flightsArray;
     public List<Flight> flights;
+    String requestURL, dateofdeparture, dateofreturn, error = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etIATADestination.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
 
         setOnClickListeners();
+        //putData();
+    }
+
+    private void putData() {
+
+        etIATAOrigin.setText("CNF");
+        etIATADestination.setText("GIG");
+        etNumberOfPassengers.setText("1");
+
     }
 
     private void setOnClickListeners() {
@@ -95,6 +104,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String myFormat = "dd/MM/yy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt","BR"));
         editText.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void updateDateofDeparture() {
+        String myFormat = "yyyyMMdd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt","BR"));
+        dateofdeparture = sdf.format(myCalendar.getTime());
+    }
+
+    private void updateDateofReturn() {
+        String myFormat = "yyyyMMdd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt","BR"));
+        dateofreturn = sdf.format(myCalendar.getTime());
     }
 
     @Override
@@ -111,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         myCalendar.set(Calendar.YEAR, year);
                         myCalendar.set(Calendar.MONTH, monthOfYear);
                         myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
+                        updateDateofDeparture();
                         updateLabel(etdateofdeparture);
                     }
 
@@ -130,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         myCalendar.set(Calendar.YEAR, year);
                         myCalendar.set(Calendar.MONTH, monthOfYear);
                         myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        updateDateofReturn();
                         updateLabel(etdateofreturn);
                     }
 
@@ -140,6 +162,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btSearch:
+                if(!validate())
+                    return;
+
                 createRequest();
                 jsonDownloader = new JsonDownloader();
                 jsonDownloader.execute((Void) null);
@@ -148,17 +173,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private boolean validate() {
+
+        Boolean isvalid = true;
+
+        if(etIATAOrigin.getText().toString().equals("")) {
+            isvalid = false;
+            Toast.makeText(getBaseContext(), "É necessário preencher o campo IATA Origem", Toast.LENGTH_SHORT).show();
+        }else
+        if(etIATADestination.getText().toString().equals("")){
+            isvalid = false;
+            Toast.makeText(getBaseContext(), "É necessário preencher o campo IATA Destino", Toast.LENGTH_SHORT).show();
+        }else
+        if(etdateofdeparture.getText().toString().equals("")){
+            isvalid = false;
+            Toast.makeText(getBaseContext(), "É necessário preencher o campo Data da Ida", Toast.LENGTH_SHORT).show();
+        }else
+        if(etdateofreturn.getText().toString().equals("")){
+            isvalid = false;
+            Toast.makeText(getBaseContext(), "É necessário preencher o campo Data da Volta", Toast.LENGTH_SHORT).show();
+        }else
+        if(etNumberOfPassengers.getText().toString().equals("")){
+            isvalid = false;
+            Toast.makeText(getBaseContext(), "É necessário preencher o campo Número de Passageiros", Toast.LENGTH_SHORT).show();
+        }else
+        if(etIATAOrigin.getText().toString().equals(etIATADestination.getText().toString())){
+            isvalid = false;
+            Toast.makeText(getBaseContext(), "IATA Origem e IATA Destino devem ser diferentes", Toast.LENGTH_SHORT).show();
+        }
+
+        return isvalid;
+    }
+
     private void createRequest() {
 
         requestURL = getString(R.string.GOIBIBO_REQUEST) +
                 "app_id=" + getString(R.string.GOIBIBO_APP_ID) +
                 "&app_key=" + getString(R.string.GOIBIBO_APP_KEY) +
-                "&source=CNF" + //etIATAOrigin.getText() +
-                "&destination=GIG" + //etIATADestination.getText() +
-                "&dateofdeparture=20180110" +
-                "&dateofarrival=20180112" +
+                "&source=" + etIATAOrigin.getText() +
+                "&destination=" + etIATADestination.getText() +
+                "&dateofdeparture=" + dateofdeparture +
+                "&dateofarrival=" + dateofreturn +
                 "&seatingclass=E" +
-                "&adults=1" + //etNumberOfPassengers.getText() +
+                "&adults=" + etNumberOfPassengers.getText() +
                 "&children=0" +
                 "&infants=0" +
                 "&counter=100";
@@ -177,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             progressDialog = new DelayedProgressDialog();
             progressDialog.show(getSupportFragmentManager(), "tag");
+            error = "";
 
         }
 
@@ -191,11 +249,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 request.connect();
                 JsonParser jp = new JsonParser(); //from gson
                 JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
-                flights = ((JsonObject) root).get("data").getAsJsonObject().get("onwardflights").getAsJsonArray();
+                if(((JsonObject) root).get("data").getAsJsonObject().get("onwardflights")!=null) {
+                    flights = ((JsonObject) root).get("data").getAsJsonObject().get("onwardflights").getAsJsonArray();
+                }else
+                {
+                    try {
+                        error = ((JsonObject) root)
+                                .get("data")
+                                .getAsJsonObject()
+                                .get("Error").toString();
+                        progressDialog.cancel();
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(),"Erro na solicitação",Toast.LENGTH_SHORT).show();
             }
 
             return flights;
@@ -203,6 +274,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         protected void onPostExecute(final JsonArray json) {
+            if(error.length()>0)
+                Toast.makeText(getBaseContext(), error, Toast.LENGTH_SHORT).show();
+
             if(json==null)
                 return;
             Gson gson = new Gson();
